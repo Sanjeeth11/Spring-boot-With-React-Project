@@ -1,94 +1,57 @@
-import React, { useState } from "react";
+import { useState, useContext, createContext } from "react";
 
-const content = [
-    [
-        "React is a simple frontend javascript rich library"
-    ],
 
-    [
-        "Spring Boot is a simple extension of Spring Framework"
-    ],
+const UserContext = createContext();
 
-    [
-        "JavaScript is a simple frontend language mostly used for validations"
-    ]
-]
+const Test2 = () => {
 
-const menuOptions = [
-    {
-        id: 0,
-        name: "React info here"
-    },
-
-    {
-        id: 1,
-        name: "Spring Boot info here"
-    },
-
-    {
-        id: 2,
-        name: "JavaScript info here"
-    }
-]
-
-const Tabs = ({ index, setIndex }) => {
+    const [user, setUser] = useState("Sanjeeth");
 
     return (
         <div>
-            <menu>
-                {
-                    menuOptions.map(
-                        (singleOption) =>
-                            <Menu
-                                singleOption={singleOption}
-                                index={index}
-                                setIndex={setIndex}
-                            />
-                    )
-                }
-            </menu>
+            <UserContext.Provider value={user}>
+                <h1>{`Hello ${user}!`}</h1>
+                <Component1 />
+            </UserContext.Provider>
         </div>
     );
 }
 
-const Menu = ({ singleOption, index, setIndex }) => {
+function Component1() {
     return (
-        <div>
-            <button className={index === singleOption.id ? "active" : ""}
-                onClick={() => setIndex(singleOption.id)}>
-                {singleOption.name}
-            </button>
-        </div>
-    );
-}
+        <>
 
-const Display = ({index}) => {
-    return (
-        <ul>
-            {
-            content[index].map(
-                (item)=>
-                <li>
-                    {item}
-                </li>
-            )
-        }
-       </ul>
-    );
-}
+            <Component2 />
 
-
-
-const Test1 = () => {
-    const [index, setIndex] = useState(0);
-    return (
-        <div>
-            <Tabs index={index}
-                setIndex={setIndex} />
-            <Display index={index}/>
-
-        </div>
+        </>
     );
 
 }
-export default Test1;
+
+function Component2() {
+    return (
+        <>
+
+            <Component3 />
+
+        </>
+    );
+
+}
+
+
+function Component3() {
+
+    const user = useContext(UserContext);
+
+    return (
+        <>
+
+            <h1>{`Hello ${user}!`}</h1>
+
+        </>
+    );
+
+}
+
+export default Test2;
