@@ -1,8 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import Counter from './components/Counter';
-import TestCounter from './components/TestCounter';
-
 
 function App() {
   return (
@@ -10,16 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          <div>
-          <Counter/>
-          </div>
-          
-        </p>
-        <p>
-          <div>
-          <TestCounter name = "PSSR" age="27"/>
-          </div>
-          
+          Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
           className="App-link"
