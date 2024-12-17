@@ -1,59 +1,63 @@
-import { useState, useEffect } from "react";
+import { useState } from "react"
 
-const Test1 = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [index, setIndex] = useState([]);
+function Test1(){
 
-  useEffect(() => {
-    // Fetching data from Spring Boot API
-    fetch('http://localhost:8080/content')
-      .then((response) => response.json())
-      .then((data) => {
-        setIndex(data);
-      })
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+    const [index, setIndex] = useState(0);
 
-  // Handle the active index change
-  const handleButtonClick = (id) => {
-    setActiveIndex(id);
-  };
+    const  array =[
+        [   "React is simple"],
+        [   "Javascript is Simple"],
+        [   "Java is simple"],
+        [   "SpringBoot is simple"],
+        [   "Spring is simple"],
+        [   "Advance Java is simple"],
 
-  // Find the content of the selected index
-  const activeContent = index.find(item => item.id === activeIndex)?.content || [];
+    ]
 
-  return (
-    <div>
-      <div>
-        {/* Render buttons based on the fetched data */}
-        <menu>
-          {index && index.map(i => (
-            <button
-              key={i.id}
-              className={activeIndex === i.id ? "active" : ""}
-              onClick={() => handleButtonClick(i.id)}
-            >
-              {i.name}
-            </button>
-          ))}
-        </menu>
-      </div>
+    return (
+        <div>
+             <div class="button-container">
+    <button 
+    className={index === 0 ?"active":""}
+    onClick={()=> setIndex(0)}>React</button>
 
-      <div>
-        {/* Display the content of the active item */}
-        {activeIndex !== null && (
-          <div>
-            <h3>Content:</h3>
-            <ul>
-              {activeContent.map((content, index) => (
-                <li key={index}>{content}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
+    <button 
+    className={index === 1 ?"active":""}
+    onClick={()=> setIndex(1)}>Javascript</button>
+
+<button 
+    className={index === 2 ?"active":""}
+    onClick={()=> setIndex(2)}>Java</button>
+    
+<button 
+    className={index === 3 ?"active":""}
+    onClick={()=> setIndex(3)}>SpringBoot</button>
+    
+    <button 
+    className={index === 4 ?"active":""}
+    onClick={()=> setIndex(4)}>Spring</button>
+    
+    <button 
+    className={index === 5 ?"active":""}
+    onClick={()=> setIndex(5)}>Advance Java</button>
+   
+
+       <ul class="unorderedlist">
+        {
+            array[index].map(
+                item => (
+                    <li>
+                        {item}
+                    </li>
+                )
+            )
+        }
+       </ul>
+       </div>
     </div>
-  );
-};
+
+
+);
+}
 
 export default Test1;
