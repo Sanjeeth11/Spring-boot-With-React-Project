@@ -1,107 +1,94 @@
-import React, {useState} from "react";
-const array = [
-    ["React is simple"],
-    ["Javascript is Simple"],
-    ["Java is simple"],
-    ["SpringBoot is simple"],
-    ["Spring is simple"],
-    ["Advance Java is simple"],
+import React, { useState } from "react";
 
+const content = [
+    [
+        "React is a simple frontend javascript rich library"
+    ],
+
+    [
+        "Spring Boot is a simple extension of Spring Framework"
+    ],
+
+    [
+        "JavaScript is a simple frontend language mostly used for validations"
+    ]
 ]
 
-const menuoptions = [
+const menuOptions = [
     {
         id: 0,
-        name: 'React'
+        name: "React info here"
     },
+
     {
         id: 1,
-        name: 'JavaScript'
+        name: "Spring Boot info here"
     },
+
     {
         id: 2,
-        name: 'Java'
-    },
-    {
-        id: 3,
-        name: 'SpringBoot'
-    },
-    {
-        id: 4,
-        name: 'Spring'
-    },
-    {
-        id: 5,
-        name: 'AdvanceJava'
+        name: "JavaScript info here"
     }
-
 ]
 
 const Tabs = ({ index, setIndex }) => {
+
     return (
         <div>
             <menu>
                 {
-                    menuoptions.map(
-                        (singleoption) =>
+                    menuOptions.map(
+                        (singleOption) =>
                             <Menu
-                                singleoption={singleoption}
+                                singleOption={singleOption}
                                 index={index}
                                 setIndex={setIndex}
                             />
-
                     )
                 }
             </menu>
-
-
         </div>
     );
 }
 
-
-const Menu = ({singleoption, index, setIndex}) => {
+const Menu = ({ singleOption, index, setIndex }) => {
     return (
         <div>
-            <button
-                className={index === singleoption.id ? "active" : ""}
-                onClick={() => setIndex(singleoption.id)}>
-                {singleoption.name}
+            <button className={index === singleOption.id ? "active" : ""}
+                onClick={() => setIndex(singleOption.id)}>
+                {singleOption.name}
             </button>
-
         </div>
-
     );
 }
 
-const Display = ({ index }) => {
+const Display = ({index}) => {
     return (
         <ul>
-            {   array[index].map(
-                    item => (
-                        <li>
-                            {item}
-                        </li>
-                    )
-                )
-            }
-
-        </ul>
+            {
+            content[index].map(
+                (item)=>
+                <li>
+                    {item}
+                </li>
+            )
+        }
+       </ul>
     );
 }
+
 
 
 const Test1 = () => {
-   
     const [index, setIndex] = useState(0);
     return (
         <div>
             <Tabs index={index}
                 setIndex={setIndex} />
-            <Display index={index} />
+            <Display index={index}/>
+
         </div>
     );
+
 }
-
 export default Test1;
-
